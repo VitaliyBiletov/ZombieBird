@@ -10,13 +10,13 @@ public class AssetLoader {
     public static Texture texture;
     public static TextureRegion bg, grass;
 
-    public static Animation birdAnimation;
+    public static Animation<TextureRegion> birdAnimation;
     public static TextureRegion bird, birdDown, birdUp;
 
     public static TextureRegion skullUp, skullDown, bar;
 
     public static void load(){
-        texture = new Texture(Gdx.files.internal("assets.texture.png"));
+        texture = new Texture(Gdx.files.internal("data/texture.png"));
         texture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
         bg = new TextureRegion(texture, 0, 0, 136, 43);

@@ -28,6 +28,21 @@ public class Bird {
         }
 
         position.add(velocity.cpy().scl(delta));
+
+        if (velocity.y < 0){
+            rotation -= 600 * delta;
+
+            if (rotation < -25){
+                rotation = -25;
+            }
+        }
+
+        if (isFalling()) {
+            rotation += 480 * delta;
+            if (rotation > 90) {
+                rotation = 90;
+            }
+        }
     }
 
     public void onClick(){
@@ -52,5 +67,13 @@ public class Bird {
 
     public float getRotation(){
         return this.rotation;
+    }
+
+    public boolean isFalling(){
+        return velocity.y > 100;
+    }
+
+    public boolean shouldntFlap(){
+        return velocity.y > 70;
     }
 }
