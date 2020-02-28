@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.vb.gameworld.GameRender;
 import com.vb.gameworld.GameWorld;
+import com.vb.zbhelpers.InputHandler;
 
 public class GameScreen implements Screen {
 
@@ -13,8 +14,18 @@ public class GameScreen implements Screen {
 
     public GameScreen() {
         Gdx.app.log("GameScreen", "attached");
-        gameWorld = new GameWorld();
+
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeight = Gdx.graphics.getHeight();
+        float gameWidth = 136;
+        float gameHeight = screenHeight / (screenWidth / gameWidth);
+
+        int midPointY = (int) (gameHeight/2);
+
+        gameWorld = new GameWorld(midPointY);
         gameRender = new GameRender(gameWorld);
+
+        Gdx.input.setInputProcessor(new InputHandler(gameWorld.getBird()));
     }
 
     @Override
@@ -24,7 +35,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        gameWorld.update();
+        gameWorld.update(delta);
         gameRender.render(delta);
     }
 

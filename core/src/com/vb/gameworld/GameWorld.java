@@ -1,21 +1,26 @@
 package com.vb.gameworld;
 
 import com.badlogic.gdx.Gdx;
+import com.vb.gameobjects.Bird;
 
 import java.awt.Rectangle;
 
 public class GameWorld {
 
-    private Rectangle rectangle = new Rectangle(0,0,17,12);
+    private Bird bird;
 
-    public void update() {
+
+    public GameWorld(int midPointY) {
+        bird = new Bird(33, midPointY - 5, 17, 12);
+    }
+
+    public void update(float delta) {
         Gdx.app.log("GameWorld", "update");
-        rectangle.x++;
-        if (rectangle.x > 117)
-            rectangle.x = 0;
+        bird.update(delta);
     }
 
-    public Rectangle getRectangle() {
-        return rectangle;
+    public Bird getBird(){
+        return this.bird;
     }
+
 }
