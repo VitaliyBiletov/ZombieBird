@@ -1,5 +1,6 @@
 package com.vb.gameobjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
 public class Bird {
@@ -22,6 +23,8 @@ public class Bird {
 
     public void update(float delta){
         velocity.add(acceleration.cpy().scl(delta));
+
+        System.out.println(velocity.y);
 
         if (velocity.y > 200){
             velocity.y = 200;
